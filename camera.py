@@ -1,11 +1,10 @@
-import picamera
+from picamera import PiCamera
 import time
 
 framesize = (640, 480)
+camera = PiCamera()
 
 try: 
-	with picamera.PiCamera() as camera:
-		camera.resolution = framesize
-		
-		time.sleep(2)
-		
+	for filename in camera.capture_continuous('img{counter:03d}.jpg):
+		print('Captured %s' % filename)
+		sleep(30) #wait 30 seconds
