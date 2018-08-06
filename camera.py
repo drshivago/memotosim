@@ -1,10 +1,13 @@
 from picamera import PiCamera
 import time
+import datetime
 
 framesize = (640, 480)
 camera = PiCamera()
+camera.rotation = 180
 
-
-for filename in camera.capture_continuous(f'img{counter:03d}.jpg):
+d = datetime.datetime.now()
+timer = str(d.month) + str(d.day) + str(d.hour) + ':' + str(d.minute) + '-' 
+for filename in camera.capture_continuous(timer + '{counter:01d}.jpg'):
 	print('Captured %s' % filename)
-	sleep(30) #wait 30 seconds
+	time.sleep(30) #wait 30 seconds
